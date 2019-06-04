@@ -537,31 +537,32 @@
 
                     if (strpos($server['description'], 'Discord') !== false)
                     {
-                        $imageMap = "<img src=\"img/maps/discord.png\" style=\"width:100%\" class=\"img-img-top rounded\" alt=\"" . $server['description'] . "\"/>";
+                        $imageMap = "<svg width=\"320px\" height=\"178px\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">
+                                    <image xlink:href=\"img/maps/discord.png\" height=\"178px\" width=\"320px\" alt=\"" . $server['description'] . "\"/>
+                                    </svg></a>";
                         $buttonsCard = "</br> <p style=\"text-align:center;margin-bottom:0px;\">" . $server['steam'] . "</p>";
                         $mapCard = "";
                         $countryCard = "";
                     }
                     else if ((strpos($server['description'], 'TS3') !== false) || (strpos($server['description'], 'Teamspeak') !== false))
                     {
-                        $imageMap = "<img src=\"img/maps/ts3.png\" style=\"width:100%\" class=\"img-img-top rounded\" alt=\"" . $server['description'] . "\"/>";
+                        $imageMap = "<svg width=\"320px\" height=\"178px\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">
+                                <image xlink:href=\"img/maps/ts3.png\" height=\"178px\" width=\"320px\" alt=\"" . $server['description'] . "\"/>
+                                </svg></a>";
                         $buttonsCard = "</br> <p style=\"text-align:center;margin-bottom:0px;\">" . $server['steam'] . " " . $server['gametracker'] . "</p>";
                         $mapCard = "";
                     }
                     else if (strpos($server['status'], 'Offline') !== false)
                     {
-                        $imageMap = "<svg class=\"card-img-top\" width=\"100\" height=\"178\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" focusable=\"false\" role=\"img\" aria-label=\"Server offline\">
-                                        <title>Server offline</title>
-                                        <rect width=\"100%\" height=\"100%\" fill=\"var(--dark)\" />
-                                        <text x=\"37%\" y=\"50%\" fill=\"var(--danger)\" dy=\".3em\">Server offline</text>
-                                        </svg>";
+                        $imageMap = "<svg width=\"320px\" height=\"178px\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">
+                                    <image xlink:href=\"img/maps/server-offline.png\" height=\"178px\" width=\"320px\" alt=\"" . $server['description'] . "\"/>
+                                    </svg></a>";
                     }
                     else
                     {
-                        $imageMap = "<svg class=\"card-img-top\" width=\"100\" height=\"178\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"xMidYMid slice\" focusable=\"false\" role=\"img\" aria-label=\"Map Image\">
-                                        <title>No image</title><rect width=\"100%\" height=\"100%\" fill=\"var(--dark)\" />
-                                        <text x=\"37%\" y=\"50%\" fill=\"var(--info)\" dy=\".3em\">No image</text>
-                                        </svg>";
+                        $imageMap = "<svg width=\"320px\" height=\"178px\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">
+                                    <image xlink:href=\"img/maps/no-image.png\" height=\"178px\" width=\"320px\" alt=\"" . $server['description'] . "\"/>
+                                    </svg></a>";
 
                         $buttonsCard = "</br> <p style=\"text-align:center;margin-bottom:0px;\">" . $server['steam'] . " " . $server['gametracker'] . "</p>";
                     }

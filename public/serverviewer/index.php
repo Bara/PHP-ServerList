@@ -136,18 +136,12 @@
                         $nplayers = 0;
                         $mplayers = 0;
                         $online = 0;
+                        $game = "";
+                        $file = "img/games/" . $data['ModDir'] . ".png";
 
-                        if (isset($data['ModDir']) && $data['ModDir'] === "csgo")
+                        if (isset($data['ModDir']) && file_exists($file))
                         {
-                            $game = "<img src=\"img/games/" . $data['ModDir'] . ".png\" alt=\"" . $data["HostName"] . "\"/>";
-                        }
-                        else if (isset($data['ModDir']) && $data['ModDir'] === "csco")
-                        {
-                            $game = "<img src=\"img/games/" . $data['ModDir'] . ".png\" alt=\"" . $data["HostName"] . "\"/>";
-                        }
-                        else if (isset($data['ModDir']) && $data['ModDir'] === "cstrike")
-                        {
-                            $game = "<img src=\"img/games/" . $data['ModDir'] . ".png\" alt=\"" . $data["HostName"] . "\"/>";
+                            $game = "<img src=\"" . $file . "\" alt=\"" . $data["HostName"] . "\"/>";
                         }
                         else if ((strpos($description, 'TS3') !== false) || (strpos($description, 'Teamspeak') !== false))
                         {

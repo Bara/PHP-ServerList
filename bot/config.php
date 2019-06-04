@@ -3,7 +3,7 @@
     $debug = false;
     $debugErrors = false;
 
-    $sqlhost = "localhost";
+    $sqlhost = "hostname";
     $sqlport = 3306;
     $sqluser = "username";
     $sqlpass = "password";
@@ -34,5 +34,4 @@
     $showApplicationicon = "1";
 
     // Show country flags?
-    $showCountryflag = "1";
-?>
+    $showCountryflag = "1";?>

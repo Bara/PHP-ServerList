@@ -1,7 +1,9 @@
 <?php
-    require_once "_config.php";
+    # Depends on your configuration
+    require_once "../../bot/config.php";
 
     if ($active == false)
+
     {
         die("Under construction!");
     }
@@ -31,6 +33,7 @@
 
     $reloadPage = $_SERVER['PHP_SELF'];
 
+    // Taken from https://codeforgeek.com/time-ago-implementation-php/
     function get_timeago( $ptime )
     {
         $estimate_time = time() - $ptime;

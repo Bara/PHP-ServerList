@@ -288,7 +288,6 @@
                         $servers++;
                         $sourceBans = "";
                         $gameME = "";
-                        $hlsw = "";
                         $gametracker = "";
 
                         $steam = "<a href=\"steam://connect/$ip:$port/\" target=\"_blank\">
@@ -400,13 +399,13 @@
                             "percent"           => $percent,
                             "steam"             => $steam,
                             "gametracker"       => $gametracker,
-                            "hlsw"              => $hlsw,
                             "sourceBans"        => $sourceBans,
                             "gameME"            => $gameME,
                             "application"       => $application,
                             "description"       => $description,
                             "lastscan"          => $lastscan,
-                            "lastSuccessScan"   => $lastSuccessScan
+                            "lastSuccessScan"   => $lastSuccessScan,
+                            "online"            => $online
                         ];
                         if ($debug)
                         {
@@ -444,7 +443,7 @@
                 }
 
                 // TODO: Add config option
-                usort($aServers, make_cmp(['application' => "asc", 'nplayers' => "desc"]));
+                usort($aServers, make_cmp(['application' => "asc", 'nplayers' => "desc", 'online' => "desc"]));
 
                 $imageMap = "";
 

@@ -139,7 +139,6 @@
                         $game = "";
                         $file = "";
                         
-
                         if (isset($data['ModDir']))
                         {
                             $file = "img/games/" . $data['ModDir'] . ".png";
@@ -320,7 +319,10 @@
 
                         if (strlen($gameMELink) > 1)
                         {
-                            $gameME = "<a href='$gameMELink' target='_blank'><img src='img/gameme.png' alt='' /></a>";
+                            $gameME = "<a href=" . $gameMELink . " target=\"_blank\">
+                                            <svg width=" . $svgSize . " height=" . $svgSize . " xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">
+                                            <image xlink:href=\"img/stats.png\" height=" . $svgSize . " width=" . $svgSize . " data-toggle=\"tooltip\" data-placement=\"top\" title=\"Statistics\" />
+                                            </svg></a>";
                         }
 
                         if (is_array($players))
@@ -574,7 +576,7 @@
                                     <image xlink:href=\"img/maps/no-image.png\" height=\"178px\" width=\"320px\" alt=\"" . $server['description'] . "\"/>
                                     </svg></a>";
 
-                        $buttonsCard = "</br> <p style=\"text-align:center;margin-bottom:0px;\">" . $server['steam'] . " " . $server['gametracker'] . " " . $server['sourceBans'] . "</p>";
+                        $buttonsCard = "</br> <p style=\"text-align:center;margin-bottom:0px;\">" . $server['steam'] . " " . $server['gametracker'] . " " . $server['sourceBans'] . " " . $server['gameME'] . "</p>";
                     }
 
                     echo "

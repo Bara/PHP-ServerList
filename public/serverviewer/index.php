@@ -137,19 +137,25 @@
                         $mplayers = 0;
                         $online = 0;
                         $game = "";
-                        $file = "img/games/" . $data['ModDir'] . ".png";
+                        $file = "";
+                        
 
-                        if (isset($data['ModDir']) && file_exists($file))
+                        if (isset($data['ModDir']))
                         {
-                            $game = "<img src=\"" . $file . "\" alt=\"" . $data["HostName"] . "\"/>";
+                            $file = "img/games/" . $data['ModDir'] . ".png";
+                        }
+
+                        if (file_exists($file))
+                        {
+                            $game = "<img src=\"" . $file . "\" alt=\"" . $data["HostName"] . "\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"" . $data["ModDesc"] . "\"/>";
                         }
                         else if ((strpos($description, 'TS3') !== false) || (strpos($description, 'Teamspeak') !== false))
                         {
-                            $game = "<img src=\"img/games/ts3.png\" alt=\"" . $description . "\"/>";
+                            $game = "<img src=\"img/games/ts3.png\" alt=\"" . $description . "\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Teamspeak\"/>";
                         }
                         else if (strpos($description, 'Discord') !== false)
                         {
-                            $game = "<img src=\"img/games/discord.png\" alt=\"" . $description . "\"/>";
+                            $game = "<img src=\"img/games/discord.png\" alt=\"" . $description . "\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Discord\"/>";
                         }
                         else
                         {
@@ -292,20 +298,24 @@
 
                         $steam = "<a href=\"steam://connect/$ip:$port/\" target=\"_blank\">
                                     <svg width=" . $svgSize . " height=" . $svgSize . " xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">
-                                    <image xlink:href=\"img/steam.svg\" height=" . $svgSize . " width=" . $svgSize . " />
+                                    <image xlink:href=\"img/steam.svg\" height=" . $svgSize . " width=" . $svgSize . " data-toggle=\"tooltip\" data-placement=\"top\" title=\"Join server\" />
                                     </svg></a>";
 
                         if ($showGametracker === "1")
                         {
                             $gametracker = "<a href=\"http://www.gametracker.com/server_info/$ip:$port/\" target=\"_blank\">
-                                                <svg width=" . $svgSize . " height=" . $svgSize . " xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">
-                                                <image xlink:href=\"img/gametracker.png\" height=" . $svgSize . " width=" . $svgSize . " />
-                                                </svg></a>";
+                                            <svg width=" . $svgSize . " height=" . $svgSize . " xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">
+                                            <image xlink:href=\"img/gametracker.png\" height=" . $svgSize . " width=" . $svgSize . " data-toggle=\"tooltip\" data-placement=\"top\" title=\"Gametracker\" />
+                                            </svg></a>";
                         }
 
                         if (strlen($sourceBansLink) > 1)
                         {
-                            $sourceBans = "<a href='$sourceBansLink' target='_blank'><img src='img/bans.png' alt='' /></a>";
+                            // $sourceBans = "<a href='$sourceBansLink' target='_blank'><img src='img/bans.png' alt='' /></a>";
+                            $sourceBans = "<a href=" . $sourceBansLink . " target=\"_blank\">
+                                            <svg width=" . $svgSize . " height=" . $svgSize . " xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">
+                                            <image xlink:href=\"img/hammer.png\" height=" . $svgSize . " width=" . $svgSize . " data-toggle=\"tooltip\" data-placement=\"top\" title=\"Banlist\" />
+                                            </svg></a>";
                         }
 
                         if (strlen($gameMELink) > 1)
@@ -356,7 +366,7 @@
                             
                             $steam = "<a href=\"ts3server://$ip?port=$port\" target=\"_blank\">
                                         <svg width=" . $svgSize . " height=" . $svgSize . " xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">
-                                        <image xlink:href=\"img/ts3.svg\" height=" . $svgSize . " width=" . $svgSize . " />
+                                        <image xlink:href=\"img/ts3.svg\" height=" . $svgSize . " width=" . $svgSize . " data-toggle=\"tooltip\" data-placement=\"top\" title=\"Join server\" />
                                         </svg></a>";
                             $application = "2ts3";
                         }
@@ -374,7 +384,7 @@
                                 
                                 $steam = "<a href=\"$discordInvite\" target=\"_blank\">
                                             <svg width=" . $svgSize . " height=" . $svgSize . " xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">
-                                            <image xlink:href=\"img/discord.svg\" height=" . $svgSize . " width=" . $svgSize . " />
+                                            <image xlink:href=\"img/discord.svg\" height=" . $svgSize . " width=" . $svgSize . " data-toggle=\"tooltip\" data-placement=\"top\" title=\"Join server\" />
                                             </svg></a>";
                             }
 
@@ -549,7 +559,7 @@
                         $imageMap = "<svg width=\"320px\" height=\"178px\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">
                                 <image xlink:href=\"img/maps/ts3.png\" height=\"178px\" width=\"320px\" alt=\"" . $server['description'] . "\"/>
                                 </svg></a>";
-                        $buttonsCard = "</br> <p style=\"text-align:center;margin-bottom:0px;\">" . $server['steam'] . " " . $server['gametracker'] . "</p>";
+                        $buttonsCard = "</br> <p style=\"text-align:center;margin-bottom:0px;\">" . $server['steam'] . " " . $server['gametracker'] . " " . $server['sourceBans'] . "</p>";
                         $mapCard = "";
                     }
                     else if (strpos($server['status'], 'Offline') !== false)
@@ -564,7 +574,7 @@
                                     <image xlink:href=\"img/maps/no-image.png\" height=\"178px\" width=\"320px\" alt=\"" . $server['description'] . "\"/>
                                     </svg></a>";
 
-                        $buttonsCard = "</br> <p style=\"text-align:center;margin-bottom:0px;\">" . $server['steam'] . " " . $server['gametracker'] . "</p>";
+                        $buttonsCard = "</br> <p style=\"text-align:center;margin-bottom:0px;\">" . $server['steam'] . " " . $server['gametracker'] . " " . $server['sourceBans'] . "</p>";
                     }
 
                     echo "

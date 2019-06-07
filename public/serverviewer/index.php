@@ -461,6 +461,8 @@
 
                 foreach($aServers as $server)
                 {
+                    echo "<div class=\"col\">";
+
                     $list_players = "";
                     $list_scores = "";
                     $list_times = "";
@@ -580,7 +582,7 @@
                     }
 
                     echo "
-                        <div class='col-sm-3' style='padding:12px'>
+                        <div style='padding:24px'>
                             <div class='card text-white bg-dark' style='border-width:0px !important;width:20rem;'>
                                 $imageMap
                                 <div class='card-body'>
@@ -596,7 +598,7 @@
                                 </div>
                             </div>
                         </div>
-                    ";
+                    </div>";
                 }
             ?>
 

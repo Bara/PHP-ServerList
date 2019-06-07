@@ -434,28 +434,34 @@
 
             <div class="row">
             <?php
-                function make_cmp(array $sortValues)
+                function SortServerArray()
                 {
-                    return function ($a, $b) use (&$sortValues)
+                    $args = func_get_args();
+                    $data = array_shift($args);
+                    foreach ($args as $n => $field)
                     {
-                        foreach ($sortValues as $column => $sortDir)
+                        if (is_string($field))
                         {
-                            $diff = strcmp($a[$column], $b[$column]);
-                            if ($diff !== 0)
+                            $tmp = array();
+
+                            foreach ($data as $key => $row)
                             {
-                                if ('asc' === $sortDir)
-                                {
-                                    return $diff;
-                                }
-                                return $diff * -1;
+                                $tmp[$key] = $row[$field];
                             }
+
+                            $args[$n] = $tmp;
                         }
-                        return 0;
-                    };
+                    }
+
+                    $args[] = &$data;
+                    call_user_func_array('array_multisort', $args);
+                    return array_pop($args);
                 }
+        
+            
 
                 // TODO: Add config option
-                usort($aServers, make_cmp(['application' => "asc", 'nplayers' => "desc", 'online' => "desc"]));
+                $aServers = SortServerArray($aServers, 'application', SORT_ASC, 'nplayers', SORT_DESC, 'online', SORT_DESC);
 
                 $imageMap = "";
 
